@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fy.springTransaction.dao.TestDao" >
+  
+  <resultMap id="BaseResultMap" type="com.fy.springTransaction.domain.Test" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, name, sex, remark
+  </sql>
+  
+  <select id="findDate" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT 
+		<include refid="Base_Column_List"/>
+		FROM test 
+  </select>
+  
+  <insert id="add" parameterType="com.fy.springTransaction.domain.Test">
+  	insert into test(name, sex, remark) 
+  	values (#{name},#{sex},#{remark})
+  </insert>
+  
+</mapper>
